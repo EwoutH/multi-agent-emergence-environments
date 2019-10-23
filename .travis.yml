@@ -1,0 +1,18 @@
+language: python
+dist: bionic
+python: 3.8
+arch:
+  - amd64
+  - arm64
+
+install:
+  - pip install -r mujoco-worldgen/requirements.txt
+  - pip install -e mujoco-worldgen/
+  - pip install -e multi-agent-emergence-environments/
+  - pip install -r multi-agent-emergence-environments/requirements_ma_policy.txt
+
+script:
+  - ./bin/examine.py base
+  - ./bin/examine.py hide_and_seek
+  - ./bin/examine.py mae_envs/envs/base.py
+  - ./bin/examine.py my_env_jsonnet.jsonnet
